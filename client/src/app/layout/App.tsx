@@ -1,4 +1,6 @@
 import {
+  Box,
+  Container,
   CssBaseline,
   List,
   ListItem,
@@ -8,6 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import NavBar from "./NavBar";
+import ActivityDashboard from "../../features/activities/dashboard/ActivityDashboard";
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
 
@@ -20,18 +23,13 @@ function App() {
   }, []);
 
   return (
-    <>
+    <Box sx={{ bgcolor: "#eeeeee" }}>
       <CssBaseline />
       <NavBar />
-      <Typography variant="h3">Reactivities</Typography>
-      <List>
-        {activities.map((activity) => (
-          <ListItem key={activity.id}>
-            <ListItemText>{activity.title}</ListItemText>
-          </ListItem>
-        ))}
-      </List>
-    </>
+      <Container maxWidth="xl" sx={{ mt: 3 }}>
+        <ActivityDashboard activities={activities} />
+      </Container>
+    </Box>
   );
 }
 
